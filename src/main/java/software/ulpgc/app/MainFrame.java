@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
     private final JPanel contentPanel;
     private static final String barchartLayoutId = "Barchart";
     private static final String databaseLayoutId = "DataBase";
+    private JFreeDatabaseDisplay databaseDisplay;
 
     public MainFrame(){
         setLayout(new BorderLayout());
@@ -28,9 +29,14 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
         contentPanel.add(barchartdisplay = barchartPanel(), barchartLayoutId);
+        contentPanel.add(databaseDisplay = databasePanel(), databaseLayoutId);
         add(contentPanel, BorderLayout.CENTER);
         commands = new HashMap<>();
 
+    }
+
+    private JFreeDatabaseDisplay databasePanel() {
+        return new JFreeDatabaseDisplay((JButton) generateButton());
     }
 
     private JButton toggle() {
@@ -39,7 +45,7 @@ public class MainFrame extends JFrame {
         return button;
     }
 
-
+    public JFreeDatabaseDisplay databaseDisplay(){return databaseDisplay;}
 
     public JFreeBarcahrtDisplay barchartDisplay(){return barchartdisplay;}
 
@@ -78,7 +84,9 @@ public class MainFrame extends JFrame {
     public CardLayout cardLayout() {
         return cardLayout;
     }
+
     public String barchartLayoutId(){
         return barchartLayoutId;
     }
+    public String dataBaseLayoutid(){return databaseLayoutId;}
 }
